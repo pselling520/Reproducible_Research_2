@@ -1,0 +1,37 @@
+---
+title: "NOAA Storm Analysis"
+author: "Paul Selling"
+date: "7/7/2020"
+output: html_document
+---
+
+#Summary
+
+#Data processing
+
+First, we load in the data. The `read.csv` function is able to decompress the .csv.bz2 file, so that is all we need to do to load in the data. Since this is a very large dataset, we can cache the dataset to ensure we only need to load it once. We'll also load in our needed libraries at this point.
+```{r echo=TRUE, cache=TRUE}
+#cache set to TRUE for this code chunk
+
+#load in the data
+data <- read.csv(".\\repdata_data_StormData.csv.bz2",header=TRUE)
+
+#load in the libraries
+library(ggplot2)
+
+```
+
+#Results
+Across the United States, which types of events (as indicated in the EVTYPE variable) are most harmful with respect to population health?
+plot event type on x axis, fatalities + injuries on y axis
+
+First, we want to identify which types of events (using the EVTYPE variable) are most harmful with respect to population health. To do this, we will use bar graphs to compare the population health effects for each event type. 
+
+```{r echo=TRUE}
+g <- ggplot(data=data, aes(x=EVTYPE, y = sum(FATALITIES+ INJURIES)))
+g + geom_bar(stat="identity")
+```
+
+Instructions for next plot: Across the United States, which types of events have the greatest economic consequences?
+event type on x axis, prop damage + crop damage
+
