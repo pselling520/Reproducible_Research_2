@@ -5,15 +5,15 @@ date: "7/7/2020"
 output: html_document
 ---
 
-#Executive Summary
+# Executive Summary
+
 This analysis seeks to provide insight into which weather events results in the worst population health and the worst economic outcomes. The dataset we used is from the NOAA's storm database. Tornados result in both the worst population health outcomes and the worst economic outcomes. 
 
 
-#Data processing
-First, we load in the data and the libraries we need for this analysis. The `read.csv` function is able to decompress the .csv.bz2 file, so that is all we need to load in the data. Since this is a very large dataset, we can cache the dataset to ensure we only need to load it once. We'll also reduce the dataframe to only the columns we'll care about in this analysis to improve performance elsewhere.
-```{r echo=TRUE, cache=TRUE}
-#cache set to TRUE for this code chunk
+# Data processing
 
+First, we load in the data and the libraries we need for this analysis. The `read.csv` function is able to decompress the .csv.bz2 file, so that is all we need to load in the data. Since this is a very large dataset, we can cache the dataset to ensure we only need to load it once. We'll also reduce the dataframe to only the columns we'll care about in this analysis to improve performance elsewhere.
+```{r echo=TRUE}
 #load in the libraries
 library(ggplot2)
 library(dplyr)
@@ -44,11 +44,12 @@ healthData <- reducedData[c("EVTYPE","HEALTH.OUTCOMES")]
 economicData <- reducedData[c("EVTYPE","ECONOMIC.OUTCOMES")]
 ```
 
-#Results
+# Results
 
 We want to exam both the health impacts and the economic impacts of these events. We'll look at the population health outcomes first followed by the economic outcomes afterwards.
 
-###Health Results
+### Health Results
+
 First, we want to identify which types of events (using the EVTYPE variable) are most harmful with respect to population health. To do this, we will use bar graphs to compare the population health effects for each event type. We'll look at only the top 10 most dangerous weather events.
 
 ```{r echo=TRUE}
@@ -69,10 +70,12 @@ healthData %>%
              title="Top 10 Most Dangerous Weather Events") +
         scale_fill_discrete(name="Event Type")
 ```
+
 We can clearly see that tornados have been the most dangerous weather event in terms of fatalities and injuries since the NOAA began collecting this data.
 
-###Economic Impacts
-Next, we want to identify which types of events have the greatest economic consequences. To find this, we will us a bar plot to plot the total property damage and crop damage by event type.
+### Economic Impacts
+
+Next, we want to identify which types of events have the greatest economic consequences. To find this, we will us a bar plot to plot the total property damage and crop damage by event type. Once again, we'll look at only the top 10 most damaging weather events.
 
 ```{r echo=TRUE}
 economicData %>%
@@ -91,4 +94,5 @@ economicData %>%
         scale_fill_discrete(name="Event Type")
 
 ```
-Once again, we see that tornados are the most economically damaging events in our data set
+
+Once again, we see that tornados are the most economically damaging events in our data set.
