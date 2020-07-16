@@ -1,13 +1,13 @@
 ---
 title: "NOAA Storm Analysis - Health and Economic Outcomes"
 author: "Paul Selling"
-date: "7/11/2020"
+date: "7/15/2020"
 output: html_document
 ---
 
 # Executive Summary
 
-This analysis seeks to provide insight into which weather events results in the worst population health and the worst economic outcomes. The dataset we used is from the NOAA's storm database. Tornados result in both the worst population health outcomes and the worst economic outcomes. 
+This analysis seeks to provide insight into which weather events results in the worst population health and the worst economic outcomes. The dataset we used is from the NOAA's storm database. Tornados result in the worst population health outcomes. Floods result in the worst economic outcomes. 
 
 
 # Data processing
@@ -226,7 +226,7 @@ economicData %>%
                                          vjust=0.5,
                                          hjust=1)) +
         labs(x="Weather Event",
-             y="Total Crop and Property Damage",
+             y="Total Economic Damage ($ Billions)",
              title="Top 10 Most Financially Damaging Weather Events") +
         scale_fill_discrete(name="Event Type")
 
